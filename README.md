@@ -1,7 +1,7 @@
 # Online Theather
 
 This is a sample software implementation which demonstrates how to
-incorporate clean architecture in a greenfield project using .NET
+apply the clean architecture in a greenfield project using .NET
 technologies and C# programming language.
 
 ## Requirements:
