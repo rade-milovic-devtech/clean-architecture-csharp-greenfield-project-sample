@@ -1,13 +1,12 @@
-# Online Theather
+# Online Theater
 
-This is a sample software implementation which demonstrates how to
-apply the clean architecture in a greenfield project using .NET
-technologies and C# programming language.
+This is a sample software implementation which demonstrates how to apply
+the clean architecture in a greenfield project using .NET technologies
+and C# programming language.
 
 ## Requirements:
 
-The online theather system contains the following core business
-entities:
+The online theater system is interested in the following information:
 
 * Customer
   * name
