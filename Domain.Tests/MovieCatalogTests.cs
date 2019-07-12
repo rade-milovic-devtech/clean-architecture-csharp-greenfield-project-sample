@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Domain.Entities;
+using Domain.Models;
 using Xunit;
 
 namespace Domain.Tests
@@ -20,7 +19,7 @@ namespace Domain.Tests
 			var movies = new List<Movie>{ new Movie
 			{
 				Id = MovieId,
-				Name = MovieName,
+				Title = MovieName,
 				Price = new MoviePrice(TwoDaysMoviePrice, LifeLongMoviePrice)
 			}};
 
@@ -43,8 +42,8 @@ namespace Domain.Tests
 			var offers = _movieCatalog.GetMovies(customer);
 
 			Assert.Equal(1, offers.Count);
-			Assert.Equal(MovieId, offers.First().Id);
-			Assert.Equal(MovieName, offers.First().Name);
+			Assert.Equal(MovieId, offers.First().MovieId);
+			Assert.Equal(MovieName, offers.First().Title);
 			Assert.Equal(TwoDaysMoviePrice, offers.First().Price.TwoDays);
 			Assert.Equal(LifeLongMoviePrice, offers.First().Price.LifeLong);
 		}
@@ -63,8 +62,8 @@ namespace Domain.Tests
 			var offers = _movieCatalog.GetMovies(customer);
 
 			Assert.Equal(1, offers.Count);
-			Assert.Equal(MovieId, offers.First().Id);
-			Assert.Equal(MovieName, offers.First().Name);
+			Assert.Equal(MovieId, offers.First().MovieId);
+			Assert.Equal(MovieName, offers.First().Title);
 			Assert.Equal(7.8m, offers.First().Price.TwoDays);
 			Assert.Equal(78m, offers.First().Price.LifeLong);
 		}

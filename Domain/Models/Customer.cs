@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Domain.Entities
+namespace Domain.Models
 {
 	public class Customer
 	{
@@ -10,8 +6,6 @@ namespace Domain.Entities
 		public string Email { get; set; }
 		public string Name { get; set; }
 		public CustomerStatus Status { get; set; }
-
-
 	}
 
 	public enum CustomerStatus

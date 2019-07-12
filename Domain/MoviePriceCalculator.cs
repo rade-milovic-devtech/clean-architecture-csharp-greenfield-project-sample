@@ -1,4 +1,6 @@
-namespace Domain.Entities
+using Domain.Models;
+
+namespace Domain
 {
 	public abstract class MoviePriceCalculator
 	{

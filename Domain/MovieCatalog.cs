@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Domain.Entities;
+using Domain.Models;
 
 namespace Domain
 {
@@ -10,6 +8,7 @@ namespace Domain
 	{
 		private readonly IEnumerable<Movie> _movies;
 		private readonly MoviePriceCalculatorFactory _priceCalculatorFactory;
+
 		public MovieCatalog(IEnumerable<Movie> movies, MoviePriceCalculatorFactory priceCalculatorFactory)
 		{
 			_movies = movies;
@@ -20,11 +19,11 @@ namespace Domain
 		{
 			var priceCalculator = _priceCalculatorFactory.GetPriceCalculatorFor(customer);
 
-			return _movies.Select(m => new MovieOffer
+			return _movies.Select(movie => new MovieOffer
 			{
-				Id = m.Id,
-				Name = m.Name,
-				Price = priceCalculator.GetPrice(m.Price)
+				MovieId = movie.Id,
+				Title = movie.Title,
+				Price = priceCalculator.GetPrice(movie.Price)
 			}).ToList();
 		}
 	}

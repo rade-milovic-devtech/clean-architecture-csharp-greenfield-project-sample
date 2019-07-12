@@ -1,9 +1,9 @@
-namespace Domain
+namespace Domain.Models
 {
-	public class MovieOffer
+	public class Movie
 	{
 		public string Id { get; set; }
-		public string Name { get; set; }
+		public string Title { get; set; }
 		public MoviePrice Price { get; set; }
 	}
 }
