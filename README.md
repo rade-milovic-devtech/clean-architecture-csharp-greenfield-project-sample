@@ -56,3 +56,10 @@ money spent amount.
 * Promoting a customer to advanced status
 * Retrieve all customers
 * Retrieve a detailed information about a customer
+
+### Additional features to consider:
+
+* Movie offers with configurable expiration (two days, three days, etc.)
+* Every N-th movie is free for advanced users (configurable)
+* Global promotion period (two weeks 20% off on horror movies)
+* Discount codes (time based, quantity based...)
