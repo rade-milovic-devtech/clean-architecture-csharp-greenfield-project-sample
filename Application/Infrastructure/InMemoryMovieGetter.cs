@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Application.Customers.ViewCatalog;
+using Application.Ports;
+using CSharpFunctionalExtensions;
 using Domain.Models;
 
 namespace Application.Infrastructure
@@ -25,5 +24,6 @@ namespace Application.Infrastructure
 		}
 
 		public IList<Movie> GetAll() => movies.Values.ToList();
+		public Maybe<Movie> Get(string movieId) => movies.TryGetValue(movieId, out var movie) ? movie : Maybe<Movie>.None;
 	}
 }

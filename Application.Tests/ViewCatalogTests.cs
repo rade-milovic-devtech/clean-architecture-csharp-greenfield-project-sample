@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Application.Customers.ViewCatalog;
+using Application.Ports;
 using CSharpFunctionalExtensions;
 using Domain.Models;
 using Moq;

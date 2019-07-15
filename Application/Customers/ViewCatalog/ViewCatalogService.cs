@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using Application.Ports;
 using CSharpFunctionalExtensions;
 using Domain;
-using Domain.Models;
 
 namespace Application.Customers.ViewCatalog
 {
@@ -36,16 +36,6 @@ namespace Application.Customers.ViewCatalog
 	public class MovieCatalogDto
 	{
 		public IList<MovieOfferDto> Movies { get; set; }
-	}
-
-	public interface IGetMovies
-	{
-		IList<Movie> GetAll();
-	}
-
-	public interface IGetCustomers
-	{
-		Maybe<Customer> Get(string customerId);
 	}
 
 	public class MovieOfferDto
