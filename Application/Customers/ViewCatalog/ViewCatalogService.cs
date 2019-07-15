@@ -21,7 +21,7 @@ namespace Application.Customers.ViewCatalog
 			var customer = _customersGetter.Get(customerId);
 			if (customer.HasNoValue)
 			{
-				return Result.Fail<MovieCatalogDto>("Customer not found");
+				return Result.Fail<MovieCatalogDto>(Errors.CustomerNotFound);
 			}
 
 			var movies = _moviesGetter.GetAll();
