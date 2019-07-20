@@ -14,10 +14,10 @@ namespace Application.Infrastructure
 			customserStore = new Dictionary<string, Customer>
 			{
 				{
-					"customer1", new Customer { Id = "customer1", Status = CustomerStatus.Regular, Name = "Pera Peric", Email = "pera@gmail.com"}
+					"customer1", new Customer { Id = "customer1", Status = new CustomerStatusRegular(), Name = "Pera Peric", Email = "pera@gmail.com"}
 				},
 				{
-					"customer2", new Customer { Id = "customer2", Status = CustomerStatus.Advanced, Name = "Maja Majic", Email = "maja@gmail.com"}
+					"customer2", new Customer { Id = "customer2", Status = new CustomerStatusAdvanced(), Name = "Maja Majic", Email = "maja@gmail.com"}
 				}
 			};	
 		}

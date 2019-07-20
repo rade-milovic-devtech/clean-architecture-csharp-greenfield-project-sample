@@ -3,6 +3,7 @@ using Domain.Models;
 using Moq;
 using Xunit;
 
+[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace Domain.Tests
 {
 	public class PurchasedMovieTests
@@ -15,6 +16,8 @@ namespace Domain.Tests
 		public PurchasedMovieTests()
 		{
 			_dateProviderMock = new Mock<IDateProvider>();
+
+			DateProviderFactory.DateProvider = _dateProviderMock.Object;
 		}
 
 		[Fact]
@@ -27,7 +30,7 @@ namespace Domain.Tests
 				Price = new MoviePrice(_twoDaysPrice, _lifeLongPrice)
 			};
 
-			var purchasedMovie = PurchasedMovie.Lifelong(movieOffer, _dateProviderMock.Object);
+			var purchasedMovie = PurchasedMovie.Lifelong(movieOffer);
 
 			Assert.Equal(_lifeLongPrice, purchasedMovie.Price);
 		}
@@ -42,7 +45,7 @@ namespace Domain.Tests
 				Price = new MoviePrice(_twoDaysPrice, _lifeLongPrice)
 			};
 
-			var purchasedMovie = PurchasedMovie.TwoDays(movieOffer, _dateProviderMock.Object);
+			var purchasedMovie = PurchasedMovie.TwoDays(movieOffer);
 
 			Assert.Equal(_twoDaysPrice, purchasedMovie.Price);
 		}
@@ -60,7 +63,7 @@ namespace Domain.Tests
 			_dateProviderMock.Setup(dateProvider => dateProvider.Now())
 				.Returns(new DateTime(2019, 7, 15));
 
-			var purchasedMovie = PurchasedMovie.TwoDays(movieOffer, _dateProviderMock.Object);
+			var purchasedMovie = PurchasedMovie.TwoDays(movieOffer);
 
 			Assert.Equal(new DateTime(2019, 7, 17), purchasedMovie.Expiration);
 		}

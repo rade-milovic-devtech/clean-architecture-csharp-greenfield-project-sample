@@ -33,7 +33,7 @@ namespace Application.Tests
 					Id = customerId,
 					Name = "Djuro Djuric",
 					Email = "djuro@email.com",
-					Status = CustomerStatus.Regular
+					Status = new CustomerStatusRegular()
 				});
 			_getMoviesMock.Setup(x => x.GetAll()).Returns(new List<Movie>
 			{

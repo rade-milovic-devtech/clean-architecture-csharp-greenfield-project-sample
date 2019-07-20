@@ -7,13 +7,18 @@ namespace Domain.Tests
 {
 	public class CustomerTests
 	{
+		public CustomerTests()
+		{
+			DateProviderFactory.DateProvider = Mock.Of<IDateProvider>();
+		}
+
 		[Fact]
 		public void BuyTwoDaysMovieAddsItToThePurchasedHistory()
 		{
 			var customer = new Customer
 			{
 				Id = "abc",
-				Status = CustomerStatus.Regular,
+				Status = new CustomerStatusRegular(),
 			};
 
 			var movieOffer = new MovieOffer
@@ -23,7 +28,7 @@ namespace Domain.Tests
 				MovieId = "cfa"
 			};
 
-			customer.BuyTwoDays(movieOffer, Mock.Of<IDateProvider>());
+			customer.BuyTwoDays(movieOffer);
 			Assert.Equal(1, customer.PurchasedMovies.Count);
 			Assert.IsType<TwoDaysPurchasedMovie>(customer.PurchasedMovies.First());
 
@@ -35,7 +40,7 @@ namespace Domain.Tests
 			var customer = new Customer
 			{
 				Id = "abc",
-				Status = CustomerStatus.Regular,
+				Status = new CustomerStatusRegular(),
 			};
 
 			var movieOffer = new MovieOffer
@@ -45,7 +50,7 @@ namespace Domain.Tests
 				MovieId = "cfa"
 			};
 
-			customer.BuyLifelong(movieOffer, Mock.Of<IDateProvider>());
+			customer.BuyLifelong(movieOffer);
 			Assert.Equal(1, customer.PurchasedMovies.Count);
 			Assert.IsType<LifelongPurchasedMovie>(customer.PurchasedMovies.First());
 

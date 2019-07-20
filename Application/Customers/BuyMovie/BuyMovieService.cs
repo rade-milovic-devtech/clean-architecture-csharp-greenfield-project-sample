@@ -12,16 +12,14 @@ namespace Application.Customers.BuyMovie
 	{
 		private readonly IGetCustomers _customerGetter;
 		private readonly IGetMovies _movieGetter;
-		private readonly IDateProvider _dateProvider;
 		private readonly MoviePriceCalculatorFactory _moviePriceCalculatorFactory;
 
 		public BuyMovieService(IGetCustomers customerGetter, IGetMovies movieGetter,
-			MoviePriceCalculatorFactory moviePriceCalculatorFactory, IDateProvider dateProvider)
+			MoviePriceCalculatorFactory moviePriceCalculatorFactory)
 		{
 			_customerGetter = customerGetter;
 			_movieGetter = movieGetter;
 			_moviePriceCalculatorFactory = moviePriceCalculatorFactory;
-			_dateProvider = dateProvider;
 		}
 
 		public void BuyMovie(BuyMovieDto buyMovieRequest, IEnumerable<IHandleMoviePurchased> moviePurchasedHandlers)
@@ -37,14 +35,14 @@ namespace Application.Customers.BuyMovie
 					var offer = MovieOffer.Create(movie.Value, moviePriceCalculator);
 					var buyMethod = GetBuyMethod(buyMovieRequest.MovieLicenseType, customer.Value);
 
-					buyMethod(offer, _dateProvider);
+					buyMethod(offer);
 
 					HandleMoviePurchased(moviePurchasedHandlers, Result.Ok<MovieOffer>(offer));
 				})
 				.OnFailure(message => HandleMoviePurchased(moviePurchasedHandlers, Result.Fail<MovieOffer>(message)));
 		}
 
-		private Action<MovieOffer, IDateProvider> GetBuyMethod(MovieLicenseType movieLicenseType, Maybe<Customer> customer)
+		private Action<MovieOffer> GetBuyMethod(MovieLicenseType movieLicenseType, Maybe<Customer> customer)
 		{
 			switch (movieLicenseType)
 			{

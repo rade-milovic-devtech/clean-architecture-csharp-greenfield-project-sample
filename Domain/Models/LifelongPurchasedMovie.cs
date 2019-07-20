@@ -2,7 +2,7 @@ namespace Domain.Models
 {
 	public class LifelongPurchasedMovie : PurchasedMovie
 	{
-		public LifelongPurchasedMovie(MovieOffer movieOffer, IDateProvider dateProvider) : base(movieOffer, dateProvider)
+		public LifelongPurchasedMovie(MovieOffer movieOffer) : base(movieOffer)
 		{
 			Price = movieOffer.Price.LifeLong;
 		}

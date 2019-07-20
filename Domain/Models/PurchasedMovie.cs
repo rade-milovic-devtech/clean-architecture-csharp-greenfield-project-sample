@@ -4,18 +4,18 @@ namespace Domain.Models
 {
 	public abstract class PurchasedMovie
 	{
-		protected PurchasedMovie(MovieOffer movieOffer, IDateProvider dateProvider)
+		protected PurchasedMovie(MovieOffer movieOffer)
 		{
 			MovieId = movieOffer.MovieId;
-			Purchased = dateProvider.Now();
+			Purchased = DateProviderFactory.DateProvider.Now();
 		}
 
 		public string MovieId { get; set; }
 		public decimal Price { get; set; }
 		public DateTime Purchased { get; set; }
 
-		public static LifelongPurchasedMovie Lifelong(MovieOffer movieOffer, IDateProvider dateProvider) => new LifelongPurchasedMovie(movieOffer, dateProvider);
+		public static LifelongPurchasedMovie Lifelong(MovieOffer movieOffer) => new LifelongPurchasedMovie(movieOffer);
 
-		public static TwoDaysPurchasedMovie TwoDays(MovieOffer movieOffer, IDateProvider dateProvider) => new TwoDaysPurchasedMovie(movieOffer, dateProvider);
+		public static TwoDaysPurchasedMovie TwoDays(MovieOffer movieOffer) => new TwoDaysPurchasedMovie(movieOffer);
 	}
 }

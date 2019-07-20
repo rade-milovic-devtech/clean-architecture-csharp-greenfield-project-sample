@@ -1,4 +1,4 @@
-using System.ComponentModel;
+using System;
 using Domain.Models;
 
 namespace Domain
@@ -9,12 +9,12 @@ namespace Domain
 		{
 			switch (customer.Status)
 			{
-				case CustomerStatus.Regular:
+				case CustomerStatusRegular _:
 					return new Regular();
-				case CustomerStatus.Advanced:
+				case CustomerStatusAdvanced _:
 					return new Advanced();
 				default:
-					throw new InvalidEnumArgumentException();
+					throw new ArgumentException();
 			}
 		}
 	}

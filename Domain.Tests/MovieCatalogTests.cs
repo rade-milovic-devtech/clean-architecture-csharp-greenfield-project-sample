@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Domain.Models;
+using Moq;
 using Xunit;
 
 namespace Domain.Tests
@@ -16,6 +17,8 @@ namespace Domain.Tests
 
 		public MovieCatalogTests()
 		{
+			DateProviderFactory.DateProvider = Mock.Of<IDateProvider>();
+
 			var movies = new List<Movie>{ new Movie
 			{
 				Id = MovieId,
@@ -36,7 +39,7 @@ namespace Domain.Tests
 				Name = "Milicevic Miroslav",
 				Id = "0ffs1",
 				Email = "mmd333@fdsfsd.com",
-				Status = CustomerStatus.Regular
+				Status = new CustomerStatusRegular()
 			};
 
 			var offers = _movieCatalog.GetMovies(customer);
@@ -51,12 +54,12 @@ namespace Domain.Tests
 		[Fact]
 		public void GetMoviesWith25PercentDiscountForAdvancedCustomer()
 		{
-			var customer = new Customer
-			{
-				Name = "Milicevic Miroslav",
-				Id = "0ffs1",
-				Email = "mmd333@fdsfsd.com",
-				Status = CustomerStatus.Advanced
+            var customer = new Customer
+            {
+                Name = "Milicevic Miroslav",
+                Id = "0ffs1",
+                Email = "mmd333@fdsfsd.com",
+                Status = new CustomerStatusAdvanced()
 			};
 
 			var offers = _movieCatalog.GetMovies(customer);
