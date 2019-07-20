@@ -14,7 +14,7 @@ namespace Domain.Models
 		{
 			get
 			{
-				_status = _status.NextStatus(this);
+				_status = _status.Refresh(this);
 				return _status;
 			}
 			set => _status = value;
@@ -22,7 +22,19 @@ namespace Domain.Models
 
 		public IReadOnlyList<PurchasedMovie> PurchasedMovies => new ReadOnlyCollection<PurchasedMovie>(_purchasedMovies);
 			
-		private readonly IList<PurchasedMovie> _purchasedMovies = new List<PurchasedMovie>();
+		private readonly IList<PurchasedMovie> _purchasedMovies;
+
+		public Customer()
+		{
+			_status = new CustomerStatusRegular();
+			_purchasedMovies = new List<PurchasedMovie>();
+		}
+
+		public Customer(CustomerStatus status, IList<PurchasedMovie> purchasedMovies)
+		{
+			_status = status;
+			_purchasedMovies = purchasedMovies;
+		}
 
 		public void BuyLifelong(MovieOffer movie)
 		{
